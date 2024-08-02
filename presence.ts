@@ -1,3 +1,4 @@
+
 const presence = new Presence({
 	clientId: "1230749736617639966",
 })
@@ -24,6 +25,24 @@ presence.on("UpdateData", async () => {
 		} else if (path[2]=="profile"){
 			if (path[3]=="me"){
 				presenceData.details = "Looking at My Profile"
+				presenceData.buttons = [{
+					label: "My Profile",
+					url: document.location.href
+				}]
+			} else {
+				try {
+					presenceData.details = `Looking at ${document.querySelector(".aops-panel.alc-profile-main-panel > .alc-left.alc-one-line").textContent}'s Profile`
+					presenceData.buttons = [{
+						label: document.querySelector(".aops-panel.alc-profile-main-panel > .alc-left.alc-one-line").textContent+"'s Profile",
+						url: document.location.href
+					}]
+				} catch (e){
+					presenceData.details = "Looking at Someone's Profile"
+					presenceData.buttons = [{
+						label: "Profile",
+						url: document.location.href
+					}]
+				}
 			}
 		} else if (path[2]=="report"){
 			presenceData.details = "Looking at My Stats"
