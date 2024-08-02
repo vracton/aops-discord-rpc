@@ -2,11 +2,16 @@
 const presence = new Presence({
 	clientId: "1230749736617639966",
 })
+
 const browsingTimestamp = Math.floor(Date.now() / 1000);
 
+const enum Assets { // Other default assets can be found at index.d.ts
+	Logo = "https://i.ibb.co/Xy1YLbf/aopslogo.png",
+}
 
 presence.on("UpdateData", async () => {
 	const presenceData: PresenceData = {
+		largeImageKey: Assets.Logo,
 		startTimestamp: browsingTimestamp
 	};
 
@@ -25,6 +30,7 @@ presence.on("UpdateData", async () => {
 				const lvlUpXp = Number(document.querySelector(".alc-small-stats").textContent.trim().split(" ")[0])
 				const progress = Array.from(document.querySelectorAll('.aops-bar-int-caption')).find(e => e.textContent !== '').textContent
 				presenceData.state = progress+"% to Next Level"
+				presenceData.smallImageKey = (document.querySelector(".alc-level-emblem > img") as HTMLImageElement).src
 				presenceData.smallImageText = "Level "+document.querySelector(".alc-level-emblem > span").textContent+" • "+xp+"/"+(lvlUpXp+xp)+" XP"
 			} catch (e){console.log(e)}
 		} else if (path[2]==null){
@@ -52,9 +58,16 @@ presence.on("UpdateData", async () => {
 				}
 			}
 		} else if (path[2]=="report"){
-			presenceData.details = "Looking at My Stats"
+			try {
+				presenceData.details = `Looking at My ${document.querySelector(".aops-panel.alc-left.alc-report-progress-table > .alc-one-line").textContent.slice(12)} Stats`
+			} catch (e){
+				presenceData.details = "Looking at My Stats"
+			}
+			try {
+				presenceData.state = `${Number(document.querySelectorAll(".alc-value.alc-right:not(.alc--bigger)")[3].textContent.trim().split("\t\t\t")[1])} Correct • ${Number(document.querySelector(".alc-value.alc-right:not(.alc--bigger)").textContent.trim().split("\t\t\t")[1])}% Accuracy`
+			} catch (e) {}
 		} else if (path[2]=="hall_of_fame"){
-			//add detection for the different leaderboards in future
+			//eventually add detection for the different leaderboards in future
 			presenceData.details = "Gazing at the Hall of Fame"
 		} else if (path[2]=="help"){
 			presenceData.details = "Looking for Some Help"
