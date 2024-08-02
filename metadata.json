@@ -1,0 +1,20 @@
+{
+	"$schema": "https://schemas.premid.app/metadata/1.9",
+	"author": {
+		"id": "958519152878964756",
+		"name": "vracto"
+	},
+	"service": "AoPS",
+	"description": {
+		"en": "Art of Problem Solving"
+	},
+	"url": "artofproblemsolving.com",
+	"version": "1.0.0",
+	"logo": "https://upload.wikimedia.org/wikipedia/commons/5/5a/Aops_Logo.png",
+	"thumbnail": "https://upload.wikimedia.org/wikipedia/commons/5/5a/Aops_Logo.png",
+	"color": "#0000ff",
+	"category": "other",
+	"tags": [
+		"aops"
+	]
+}
