@@ -20,6 +20,13 @@ presence.on("UpdateData", async () => {
 			} catch (e){
 				presenceData.details = "Solving Problems"
 			}
+			try {
+				const xp = Number(document.querySelector(".alc-xp-bar > .alc--label").textContent)
+				const lvlUpXp = Number(document.querySelector(".alc-small-stats").textContent.trim().split(" ")[0])
+				const progress = Array.from(document.querySelectorAll('.aops-bar-int-caption')).find(e => e.textContent !== '').textContent
+				presenceData.state = progress+"% to Next Level"
+				presenceData.smallImageText = "Level "+document.querySelector(".alc-level-emblem > span").textContent+" • "+xp+"/"+(lvlUpXp+xp)+" XP"
+			} catch (e){console.log(e)}
 		} else if (path[2]==null){
 			presenceData.details = "Idling on the Menu"
 		} else if (path[2]=="profile"){
