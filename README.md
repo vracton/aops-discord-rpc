@@ -1,3 +1,6 @@
+![image](https://github.com/user-attachments/assets/dfeebda1-788e-4c14-b06f-5aa3d32bcc39)
+
+
 This presence has been created for use with the [PreMiD](https://chromewebstore.google.com/detail/premid/agjnjboanicjcpenljmaaigopkgdnihi) chrome extension.
 
 First, setup PreMiD with the following [tutorial](https://docs.premid.app/en/install).
